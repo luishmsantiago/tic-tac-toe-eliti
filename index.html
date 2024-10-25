@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TIC-TAC-TOE ELITI</title>
+    <style>
+      .titulo {
+        background-color: blueviolet;
+        color: gold;
+        padding: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+      }
+      table {
+        margin: auto;
+        border-collapse: collapse;
+        display: none;
+      }
+      td {
+        background-color: blueviolet;
+        color: gold;
+        width: 150px; 
+        height: 150px; 
+        font-family: Arial, Helvetica, sans-serif;
+        border: 2px solid gold;
+        font-size: 130px;
+        text-align: center;
+        border: 2px solid gold;
+      }
+      td:hover{
+        background-color: violet;
+      }
+      .welcome{
+        text-align: center;
+        font-family:Arial, Helvetica, sans-serif;
+        color: blueviolet;
+        border: 10px solid gold;
+      }
+      .input-container {
+        text-align: center;
+        margin:20px;
+      }
+      .jogador-vez{
+        text-align: center;
+        font-family:Arial, Helvetica, sans-serif;
+        color: blueviolet;
+        font-size: 30px;
+        display: none;
+      }
+      .refresh-button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 20px;
+        background-color: blueviolet;
+        color: gold;
+        border: 2px solid gold;
+        cursor: pointer;
+        display:none;
+      }
+      .refresh-button:hover {
+        background-color: violet;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="titulo">TIC-TAC-TOE ELITI</h1>
+    <br><br><br><br>
+    <div class="welcome">
+      <h2>Bem-vindo ao TIC-TAC-TOE ELITI</h2>
+      <h3>Insira o nome dos jogadores para iniciar</h3>
+      <div class="input-container">
+        <label for="player1">Jogador 1 (X):</label>
+        <input type="text" id="player1" name="player1"><br><br>
+        <label for="player2">Jogador 2 (O):</label>
+        <input type="text" id="player2" name="player2"><br><br>
+        <button onclick="startGame()">Iniciar Jogo</button>
+      </div>
+    </div>
+    <div class="jogador-vez">
+      <h2>Jogador da vez: <span id="current-player"></span></h2>
+    </div>
+    <table>
+      <tr>
+        <td onclick="makeMove(this)"></td>
+        <td onclick="makeMove(this)"></td>
+        <td onclick="makeMove(this)"></td>
+      </tr>
+      <tr style="font-size:100px">
+        <td onclick="makeMove(this)"></td>
+        <td onclick="makeMove(this)"></td>
+        <td onclick="makeMove(this)"></td>
+      </tr>
+      <tr style="font-size:100px">
+        <td onclick="makeMove(this)"></td>
+        <td onclick="makeMove(this)"></td>
+        <td onclick="makeMove(this)"></td>
+      </tr>
+    </table>
+    <button class="refresh-button" onclick="location.reload()">Alterar Jogadores</button>
+    <script>
+      var currentPlayer = 'X';
+      var player1 = '';
+      var player2 = '';
+
+      function startGame() {
+        player1 = document.getElementById('player1').value;
+        player2 = document.getElementById('player2').value;
+      
+        if (player1 && player2) {
+          document.querySelector('.welcome').style.display = 'none';
+          document.querySelector('table').style.display = 'table';
+          document.querySelector('.jogador-vez').style.display = 'block';
+          document.querySelector('.refresh-button').style.display = 'block';
+          document.getElementById('current-player').textContent = player1 + ' (X)';
+        } else {
+          alert('Por favor, insira os nomes dos dois jogadores.');
+        }
+      }
+
+      function makeMove(cell) {
+        if (cell.textContent === '') {
+          cell.textContent = currentPlayer;
+          if (checkWin()) {
+            var winner = currentPlayer === 'X' ? player1 : player2
+            alert('Jogador ' + winner + ' venceu! Aperte no botão "OK" para jogar novamente.');
+            resetGame();
+          } else if (checkDraw()) {
+            alert('O jogo empatou! Clique em "OK" para recomeçar.');
+            resetGame();
+          } else {
+            if (currentPlayer === 'X') {
+              currentPlayer = 'O';
+              document.getElementById('current-player').textContent = player2 + ' (O)';
+            } else {
+              currentPlayer = 'X';
+              document.getElementById('current-player').textContent = player1 + ' (X)';
+            }
+          }
+        }
+      }
+      function checkWin() {
+        var cells = document.querySelectorAll('td');
+        var winPatterns = [
+          [0, 1, 2], [3, 4, 5], [6, 7, 8], // Linhas
+          [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colunas
+          [0, 4, 8], [2, 4, 6]             // Diagonais
+        ];
+
+        return winPatterns.some(pattern => {
+          return pattern.every(index => {
+            return cells[index].textContent === currentPlayer;
+          });
+        });
+      }
+
+      function checkDraw() {
+        var cells = document.querySelectorAll('td');
+        return Array.from(cells).every(cell => cell.textContent !== '');
+      }
+
+      function resetGame() {
+        var cells = document.querySelectorAll('td');
+        cells.forEach(cell => cell.textContent = '');
+        currentPlayer = 'X';
+        document.getElementById('current-player').textContent = player1 + ' (X)';
+      }
+
+    </script>
+  </body>
+</html>
