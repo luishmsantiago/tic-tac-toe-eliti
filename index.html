@@ -37,6 +37,8 @@
         color: blueviolet;
         border: 10px solid gold;
         padding: 20px;
+        margin: auto;
+        width: fit-content;
       }
       .input-container {
         text-align: center;
@@ -63,6 +65,9 @@
       .refresh-button:hover {
         background-color: violet;
       }
+      .startButton{
+        font-size:20 px;
+      }
       @media (max-width: 600px) { 
         td { 
           height: 50px; 
@@ -87,7 +92,7 @@
         <input type="text" id="player1" name="player1"><br><br>
         <label for="player2">Jogador 2 (O):</label>
         <input type="text" id="player2" name="player2"><br><br>
-        <button onclick="startGame()">Iniciar Jogo</button>
+        <button class= "startButton" onclick="startGame()">Iniciar Jogo</button>
       </div>
     </div>
     <div class="jogador-vez">
@@ -161,7 +166,7 @@
         ];
 
         return winPatterns.some(pattern => {
-          return pattern.every(index => {
+          return pattern.every(index => { 
             return cells[index].textContent === currentPlayer;
           });
         });
