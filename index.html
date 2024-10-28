@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>TIC-TAC-TOE ELITI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       .titulo {
         background-color: blueviolet;
@@ -14,6 +15,7 @@
         margin: auto;
         border-collapse: collapse;
         display: none;
+        width: auto;
       }
       td {
         background-color: blueviolet;
@@ -24,7 +26,7 @@
         border: 2px solid gold;
         font-size: 130px;
         text-align: center;
-        border: 2px solid gold;
+        cursor: pointer;
       }
       td:hover{
         background-color: violet;
@@ -34,6 +36,7 @@
         font-family:Arial, Helvetica, sans-serif;
         color: blueviolet;
         border: 10px solid gold;
+        padding: 20px;
       }
       .input-container {
         text-align: center;
@@ -60,6 +63,17 @@
       .refresh-button:hover {
         background-color: violet;
       }
+      @media (max-width: 600px) { 
+        td { 
+          height: 50px; 
+          font-size: 10vw; 
+        } 
+        .titulo, .welcome, .jogador-vez { 
+          font-size: 5vw; 
+        } 
+        .refresh-button { 
+          font-size: 4vw; } 
+        }
     </style>
   </head>
   <body>
