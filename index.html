@@ -101,7 +101,7 @@
     </style>
   </head>
   <body>
-    <h1 class="titulo">TIC-TAC-TOE ELITI</h1>
+    <h1 class="titulo" id="head-titulo">TIC-TAC-TOE ELITI</h1>
     <br><br>
     <div class="container-welcome">
       <div class="welcome">
@@ -154,12 +154,13 @@
       <span id="player2-victories">Vitórias de :</span>
     </div>
     <script>
-      var currentPlayer = 'X';
+    var currentPlayer = 'X';
     var player1 = '';
     var player2 = '';
     var numVictP1 = 0;
     var numVictP2 = 0;
     var numEmpates = 0;
+    var header = document.getElementById("head-titulo").textContent;
 
     function startGame() {
       player1 = document.getElementById('player1').value;
@@ -178,13 +179,6 @@
         alert('Por favor, insira os nomes dos dois jogadores.');
       }
     }
-
-    function updateVictoryLabels() {
-      document.getElementById('player1-victories').textContent = 'Vitórias de ' + player1 + ': ' + numVictP1;
-      document.getElementById('player2-victories').textContent = 'Vitórias de ' + player2 + ': ' + numVictP2;
-      document.getElementById('num-empates').textContent = 'Empates: ' + numEmpates;
-    }
-
     function makeMove(cell) {
       if (cell.textContent === '') {
         cell.textContent = currentPlayer;
@@ -207,6 +201,13 @@
           document.getElementById('current-player').textContent = currentPlayer === 'X' ? player1 + ' (X)' : player2 + ' (O)';
         }
       }
+    }
+
+    function updateVictoryLabels() {
+      document.getElementById('player1-victories').textContent = 'Vitórias de ' + player1 + ': ' + numVictP1;
+      document.getElementById('player2-victories').textContent = 'Vitórias de ' + player2 + ': ' + numVictP2;
+      document.getElementById('num-empates').textContent = 'Empates: ' + numEmpates;
+      document.getElementById('head-titulo').textContent = header + ": " + player1;
     }
 
     function checkWin() {
