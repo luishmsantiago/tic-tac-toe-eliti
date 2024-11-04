@@ -1,242 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>TIC-TAC-TOE ELITI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    .titulo {
-      background-color: blueviolet;
-      color: gold;
-      padding: 20px;
-      font-family: Arial, Helvetica, sans-serif;
-      text-align: center;
-    }
-    table {
-      margin: auto;
-      border-collapse: collapse;
-      display: none;
-      width: auto;
-    }
-    .tabelas {
-      display: flex;
-      justify-content: space-around;
-    }
-    td {
-      background-color: blueviolet;
-      color: gold;
-      width: 150px;
-      height: 150px;
-      font-family: Arial, Helvetica, sans-serif;
-      border: 2px solid gold;
-      font-size: 130px;
-      text-align: center;
-      cursor: pointer;
-    }
-    td:hover {
-      background-color: violet;
-    }
-    .container-welcome {
-      display: flex;
-      justify-content: space-around;
-    }
-    .welcome {
-      text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
-      color: blueviolet;
-      border: 10px solid gold;
-      padding: 20px;
-      margin: 10px;
-      width: 45%;
-    }
-    .input-container {
-      text-align: center;
-      margin: 20px;
-    }
-    .jogador-vez {
-      text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
-      color: blueviolet;
-      font-size: 30px;
-      display: none;
-    }
-    .refresh-button {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      font-size: 20px;
-      background-color: blueviolet;
-      color: gold;
-      border: 2px solid gold;
-      cursor: pointer;
-      display: none;
-    }
-    .refresh-button:hover {
-      background-color: violet;
-    }
-    .numVitorias {
-      text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 20px;
-      padding: 10px;
-      bottom: 0;
-      position: fixed;
-      width: 99%;
-      color: gold;
-      background-color: blueviolet;
-      display: none;
-    }
-    @media (max-width: 600px) {
-      td {
-        height: 50px;
-        font-size: 10vw;
+  <head>
+    <title>TIC-TAC-TOE ELITI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .titulo {
+        background-color: blueviolet;
+        color: gold;
+        padding: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
       }
-      .titulo, .jogador-vez {
-        font-size: 5vw;
+      table {
+        margin: auto;
+        border-collapse: collapse;
+        display: none;
+        width: auto;
+      }
+      .tabelas {
+        display: flex;
+        justify-content: space-around;
+      }
+      .game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      td {
+        background-color: blueviolet;
+        color: gold;
+        width: 150px;
+        height: 150px;
+        font-family: Arial, Helvetica, sans-serif;
+        border: 2px solid gold;
+        font-size: 130px;
+        text-align: center;
+        cursor: pointer;
+      }
+      td:hover {
+        background-color: violet;
+      }
+      .container-welcome {
+        display: flex;
+        justify-content: space-around;
+      }
+      .welcome {
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        color: blueviolet;
+        border: 10px solid gold;
+        padding: 20px;
+        margin: 10px;
+        width: 45%;
+      }
+      .input-container {
+        text-align: center;
+        margin: 20px;
+      }
+      .container-jogador-vez {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+        display:none;
+      }
+      .jogador-vez {
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        color: gold;
+        font-size: 30px;
+        background-color: blueviolet;
+        padding: 10px;
+        width: 45%;
       }
       .refresh-button {
-        font-size: 4vw;
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 20px;
+        background-color: blueviolet;
+        color: gold;
+        border: 2px solid gold;
+        cursor: pointer;
+        display: flex;
+        display: none;
       }
-    }
-  </style>
-</head>
-<body>
-  <h1 class="titulo" id="head-titulo">TIC-TAC-TOE ELITI</h1>
-  <br><br>
-  <div class="jogador-vez" id="header-info">
-    <h2>Jogador da vez: <span id="current-player"></span></h2>
-  </div>
-  <div class="container-welcome">
-    <div class="welcome" id="welcome-game1">
-      <h2>Bem-vindo ao TIC-TAC-TOE ELITI (Jogo 1)</h2>
-      <h3>Insira o nome dos jogadores para iniciar</h3>
-      <div class="input-container">
-        <label for="player1">Jogador 1 (X):</label>
-        <input type="text" id="player1"><br><br>
-        <label for="player2">Jogador 2 (O):</label>
-        <input type="text" id="player2"><br><br>
-        <button class="startButton" onclick="startGame(1)">Iniciar Jogo 1</button>
-      </div>
-    </div>
-    <div class="welcome" id="welcome-game2">
-      <h2>Bem-vindo ao TIC-TAC-TOE ELITI (Jogo 2)</h2>
-      <h3>Insira o nome dos jogadores para iniciar</h3>
-      <div class="input-container">
-        <label for="player1-2">Jogador 1 (X):</label>
-        <input type="text" id="player1-2"><br><br>
-        <label for="player2-2">Jogador 2 (O):</label>
-        <input type="text" id="player2-2"><br><br>
-        <button class="startButton" onclick="startGame(2)">Iniciar Jogo 2</button>
-      </div>
-    </div>
-  </div>
-  <div class="tabelas">
-    <table id="game1-table">
-      <tr><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td></tr>
-      <tr><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td></tr>
-      <tr><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td></tr>
-    </table>
-    <table id="game2-table">
-      <tr><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td></tr>
-      <tr><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td></tr>
-      <tr><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td></tr>
-    </table>
-  </div>
-  <button class="refresh-button" onclick="location.reload()">Alterar Jogadores</button>
-  <div class="numVitorias" id="numVict">
-    <span id="player1-victories">Vitórias de (Jogo 1): 0 | Vitórias de (Jogo 2): 0</span>
-    <span id="num-empates">Empates (Total): 0</span>
-  </div>
-  <script>
-    let games = {
-      1: { player1: '', player2: '', currentPlayer: 'X', numVictP1: 0, numVictP2: 0, numEmpates: 0 },
-      2: { player1: '', player2: '', currentPlayer: 'X', numVictP1: 0, numVictP2: 0, numEmpates: 0 }
-    };
-
-    function startGame(gameNumber) {
-      const player1Input = document.getElementById(gameNumber === 1 ? 'player1' : 'player1-2').value;
-      const player2Input = document.getElementById(gameNumber === 1 ? 'player2' : 'player2-2').value;
-      if (player1Input && player2Input) {
-        games[gameNumber].player1 = player1Input;
-        games[gameNumber].player2 = player2Input;
-        document.getElementById(`game${gameNumber}-table`).style.display = 'table';
-        document.getElementById(`welcome-game${gameNumber}`).style.display = 'none';
-        document.getElementById("numVict").style.display = 'flex';
-        document.querySelector('.refresh-button').style.display = 'block';
-        document.querySelector('.jogador-vez').style.display = 'block';
-        updateVictoryLabels();
-      } else {
-        alert('Por favor, insira os nomes dos dois jogadores.');
+      .refresh-button:hover {
+        background-color: violet;
       }
-    }
-
-    function makeMove(gameNumber, cell) {
-      const game = games[gameNumber];
-      if (cell.textContent === '') {
-        cell.textContent = game.currentPlayer;
-        if (checkWin(gameNumber)) {
-          alert(`Jogador ${game.currentPlayer === 'X' ? game.player1 : game.player2} venceu o jogo ${gameNumber}!`);
-          if (game.currentPlayer === 'X') game.numVictP1++; else game.numVictP2++;
-          checkWinSet(gameNumber);
-          resetGame(gameNumber);
-        } else if (checkDraw(gameNumber)) {
-          alert(`O jogo ${gameNumber} empatou!`);
-          game.numEmpates++;
-          resetGame(gameNumber);
-        } else {
-          game.currentPlayer = game.currentPlayer === 'X' ? 'O' : 'X';
-          updateHeader(gameNumber);
+      .container-alt-players{
+        justify-content: space-around;
+        margin-bottom: 20px;
+        display:none;
+      }
+      .numVitorias {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        padding: 10px;
+        color: gold;
+        background-color: blueviolet;
+        margin-top: 20px;
+        display: none;
+      }
+      @media (max-width: 600px) {
+        td {
+          height: 50px;
+          font-size: 10vw;
+        }
+        .titulo, .jogador-vez {
+          font-size: 5vw;
+        }
+        .refresh-button {
+          font-size: 4vw;
         }
       }
-    }
-
-    function updateVictoryLabels() {
-      document.getElementById('player1-victories').textContent = `Vitórias de ${games[1].player1} (Jogo 1): ${games[1].numVictP1} | Vitórias de ${games[2].player1} (Jogo 2): ${games[2].numVictP1}`;
-      document.getElementById('num-empates').textContent = `Empates (Total): ${games[1].numEmpates + games[2].numEmpates}`;
-    }
-
-    function updateHeader(gameNumber) {
-      const game = games[gameNumber];
-      document.getElementById("header-info").style.display = 'block';
-      document.getElementById("current-player").textContent = 
-        `${game.currentPlayer === 'X' ? game.player1 : game.player2} (${game.currentPlayer})`;
-    }
-
-    function resetGame(gameNumber) {
-      const cells = document.querySelectorAll(`#game${gameNumber}-table td`);
-      cells.forEach(cell => cell.textContent = '');
-      games[gameNumber].currentPlayer = 'X';
-      updateVictoryLabels();
-      updateHeader(gameNumber);
-    }
-
-    function checkWinSet(gameNumber) {
-      const game = games[gameNumber];
-      if (game.numVictP1 >= 3) {
-        alert(`${game.player1} venceu o conjunto de jogos do Jogo ${gameNumber}!`);
-        resetGame(gameNumber);
-      } else if (game.numVictP2 >= 3) {
-        alert(`${game.player2} venceu o conjunto de jogos do Jogo ${gameNumber}!`);
-        resetGame(gameNumber);
+      .winning-line {
+        animation: highlightWin 0.8s alternate infinite;
       }
-    }
 
-    function checkWin(gameNumber) {
-      const cells = Array.from(document.querySelectorAll(`#game${gameNumber}-table td`));
-      const combos = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], // linhas
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], // colunas
-        [0, 4, 8], [2, 4, 6]             // diagonais
-      ];
-      return combos.some(combo =>
-        combo.every(index => cells[index].textContent === games[gameNumber].currentPlayer)
-      );
-    }
+      @keyframes highlightWin {
+        0% { background-color: gold; }
+        100% { background-color: violet; }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="titulo" id="head-titulo">TIC-TAC-TOE ELITI</h1>
+    <br><br>
+    <div class="container-jogador-vez">
+      <div class="jogador-vez" id="header-info-game1">
+        <span>Jogo 1 - Jogador da vez: <span id="current-player-game1"></span></span>
+      </div>
+      <div class="jogador-vez" id="header-info-game2">
+        <span>Jogo 2 - Jogador da vez: <span id="current-player-game2"></span></span>
+      </div>
+    </div>
+    <div class="container-welcome">
+      <div class="welcome" id="welcome-game1">
+        <h2>Bem-vindo ao TIC-TAC-TOE ELITI (Jogo 1)</h2>
+        <h3>Insira o nome dos jogadores para iniciar</h3>
+        <div class="input-container">
+          <label for="player1">Jogador 1 (X):</label>
+          <input type="text" id="player1"><br><br>
+          <label for="player2">Jogador 2 (O):</label>
+          <input type="text" id="player2"><br><br>
+          <button class="startButton" onclick="startGame(1)">Iniciar Jogo 1</button>
+        </div>
+      </div>
+      <div class="welcome" id="welcome-game2">
+        <h2>Bem-vindo ao TIC-TAC-TOE ELITI (Jogo 2)</h2>
+        <h3>Insira o nome dos jogadores para iniciar</h3>
+        <div class="input-container">
+          <label for="player1-2">Jogador 1 (X):</label>
+          <input type="text" id="player1-2"><br><br>
+          <label for="player2-2">Jogador 2 (O):</label>
+          <input type="text" id="player2-2"><br><br>
+          <button class="startButton" onclick="startGame(2)">Iniciar Jogo 2</button>
+        </div>
+      </div>
+    </div>
+    <div class="tabelas">
+      <div class="game-container">
+        <table id="game1-table">
+          <tr><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td></tr>
+          <tr><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td></tr>
+          <tr><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td></tr>
+        </table>
+        <button class="refresh-button" onclick="alterarJogadores(1)">Alterar Jogadores</button>
+      </div>
+      <div class="game-container">
+        <table id="game2-table">
+          <tr><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td></tr>
+          <tr><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td></tr>
+          <tr><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td></tr>
+        </table>
+        <button class="refresh-button" onclick="alterarJogadores(2)">Alterar Jogadores</button>
+      </div>
+    </div>
+    <div class="numVitorias">
+      <div id="victories-game1">
+        <span id="player1-victories-game1">Vitórias de (Jogo 1): 0</span>
+        <span id="player2-victories-game1">Vitórias de (Jogo 1): 0</span>
+        <span id="num-empates-game1">Empates (Jogo 1): 0</span>
+      </div>
+      <div id="victories-game2">
+        <span id="player1-victories-game2">Vitórias de (Jogo 2): 0</span>
+        <span id="player2-victories-game2">Vitórias de (Jogo 2): 0</span>
+        <span id="num-empates-game2">Empates (Jogo 2): 0</span>
+      </div>
+    </div>
+    <script>
+      let games = {
+        1: { player1: '', player2: '', currentPlayer: 'X', numVictP1: 0, numVictP2: 0, numEmpates: 0 },
+        2: { player1: '', player2: '', currentPlayer: 'X', numVictP1: 0, numVictP2: 0, numEmpates: 0 }
+      };
 
-    function checkDraw(gameNumber) {
-      const cells = Array.from(document.querySelectorAll(`#game${gameNumber}-table td`));
-      return cells.every(cell => cell.textContent !== '');
-    }
-  </script>
-</body>
+      function startGame(gameNumber) {
+  const player1Input = document.getElementById(gameNumber === 1 ? 'player1' : 'player1-2').value;
+  const player2Input = document.getElementById(gameNumber === 1 ? 'player2' : 'player2-2').value;
+
+  if (player1Input && player2Input) {
+    // Atribuir os nomes dos jogadores ao objeto `games`
+    games[gameNumber].player1 = player1Input;
+    games[gameNumber].player2 = player2Input;
+
+    // Exibir a tabela e esconder a tela de boas-vindas
+    document.getElementById(`game${gameNumber}-table`).style.display = 'table';
+    document.getElementById(`welcome-game${gameNumber}`).style.display = 'none';
+
+    // Exibir os containers para os elementos de cabeçalho e placar
+    document.querySelector('.container-jogador-vez').style.display = 'flex';
+    document.querySelector('.numVitorias').style.display = 'flex';
+    document.querySelectorAll('.refresh-button').forEach(button => button.style.display = 'block');
+    document.getElementById(`header-info-game${gameNumber}`).style.display = 'block';
+    document.querySelector('.container-jogador-vez').style.display = 'flex';
+
+    // Atualizar o cabeçalho com o jogador atual e o placar
+    updateHeader(gameNumber);
+    updateVictoryLabels();
+  } else {
+    alert('Por favor, insira os nomes dos dois jogadores.');
+  }
+}
+
+
+      function makeMove(gameNumber, cell) {
+        const game = games[gameNumber];
+        if (cell.textContent === '') {
+          cell.textContent = game.currentPlayer;
+          if (checkWin(gameNumber)) {
+            setTimeout(() => {
+              alert(`Jogador ${game.currentPlayer === 'X' ? game.player1 : game.player2} venceu o jogo ${gameNumber}!`);
+              if (game.currentPlayer === 'X') game.numVictP1++; else game.numVictP2++;
+              checkWinSet(gameNumber);
+              resetGame(gameNumber);
+            }, 500);
+          } else if (checkDraw(gameNumber)) {
+            setTimeout(() => {
+              alert(`O jogo ${gameNumber} empatou!`);
+              game.numEmpates++;
+              resetGame(gameNumber);
+            }, 500);
+            } else {
+            game.currentPlayer = game.currentPlayer === 'X' ? 'O' : 'X';
+            updateHeader(gameNumber);
+          }
+        }
+      }
+
+      function updateVictoryLabels() {
+        document.getElementById('player1-victories-game1').textContent = `Jogo 1: Vitórias de ${games[1].player1}: ${games[1].numVictP1}`;
+        document.getElementById('player2-victories-game1').textContent = `Vitórias de ${games[1].player2}: ${games[1].numVictP2}`;
+        document.getElementById('num-empates-game1').textContent = `Empates: ${games[1].numEmpates}`;
+        
+        document.getElementById('player1-victories-game2').textContent = `Jogo 2: Vitórias de ${games[2].player1}: ${games[2].numVictP1}`;
+        document.getElementById('player2-victories-game2').textContent = `Vitórias de ${games[2].player2}: ${games[2].numVictP2}`;
+        document.getElementById('num-empates-game2').textContent = `Empates: ${games[2].numEmpates}`;
+      }
+
+      function updateHeader(gameNumber) {
+        const game = games[gameNumber];
+        document.getElementById(`header-info-game${gameNumber}`).style.display = 'block';
+        document.getElementById(`current-player-game${gameNumber}`).textContent = 
+          `${game.currentPlayer === 'X' ? game.player1 : game.player2} (${game.currentPlayer})`;
+      }
+
+      function resetGame(gameNumber) {
+        const cells = document.querySelectorAll(`#game${gameNumber}-table td`);
+        cells.forEach(cell => cell.textContent = '');
+        games[gameNumber].currentPlayer = 'X';
+        updateVictoryLabels();
+        updateHeader(gameNumber);
+      }
+
+      function checkWinSet(gameNumber) {
+        const game = games[gameNumber];
+        if (game.numVictP1 >= 3) {
+          setTimeout(() => {
+            alert(`${game.player1} venceu o conjunto de jogos do Jogo ${gameNumber}! Clique no OK para jogar novamente.`);
+            resetGame(gameNumber);
+          }, 500);
+            games[gameNumber].numVictP1 = 0;
+        } else if (game.numVictP2 >= 3) {
+          setTimeout(() => {
+            alert(`${game.player2} venceu o conjunto de jogos do Jogo ${gameNumber}! Clique no OK para jogar novamente.`);
+            resetGame(gameNumber);
+          }, 500);
+            games[gameNumber].numVictP2 = 0;
+        }
+      }
+
+      function checkWin(gameNumber) {
+        const cells = Array.from(document.querySelectorAll(`#game${gameNumber}-table td`));
+        const combos = [
+          [0, 1, 2], [3, 4, 5], [6, 7, 8],
+          [0, 3, 6], [1, 4, 7], [2, 5, 8],
+          [0, 4, 8], [2, 4, 6]
+        ];
+        for (const combo of combos) {
+      const [a, b, c] = combo;
+      if (cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent) {
+        // Adiciona a classe de animação aos elementos vencedores
+        combo.forEach(index => cells[index].classList.add('winning-line'));
+
+        setTimeout(() => {
+          // Remove a classe após a vitória ser anunciada e o reset ocorrer
+          combo.forEach(index => cells[index].classList.remove('winning-line'));
+            }, 1500);
+
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function checkDraw(gameNumber) {
+        const cells = Array.from(document.querySelectorAll(`#game${gameNumber}-table td`));
+        return cells.every(cell => cell.textContent !== '');
+      }
+      function alterarJogadores(gameNumber) {
+        document.getElementById(`game${gameNumber}-table`).style.display = 'none';
+        document.getElementById(`welcome-game${gameNumber}`).style.display = 'block';
+        document.querySelector('.container-jogador-vez').style.display = 'none';
+        document.querySelector('.numVitorias').style.display = 'none';
+        document.querySelector('.container-alt-players').style.display = 'none';
+        document.querySelector('.container-jogador-vez').style.display = 'none';
+        document.querySelector('.refresh-button').style.display = 'none';
+      }
+    </script>
+  </body>
 </html>
-
