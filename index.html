@@ -1,250 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>TIC-TAC-TOE ELITI</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      .titulo {
-        background-color: blueviolet;
-        color: gold;
-        padding: 20px;
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: center;
-      }
-      table {
-        margin: auto;
-        border-collapse: collapse;
-        display: none;
-        width: auto;
-      }
+<head>
+  <title>TIC-TAC-TOE ELITI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .titulo {
+      background-color: blueviolet;
+      color: gold;
+      padding: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      display: none;
+      width: auto;
+    }
+    .tabelas {
+      display: flex;
+      justify-content: space-around;
+    }
+    td {
+      background-color: blueviolet;
+      color: gold;
+      width: 150px;
+      height: 150px;
+      font-family: Arial, Helvetica, sans-serif;
+      border: 2px solid gold;
+      font-size: 130px;
+      text-align: center;
+      cursor: pointer;
+    }
+    td:hover {
+      background-color: violet;
+    }
+    .container-welcome {
+      display: flex;
+      justify-content: space-around;
+    }
+    .welcome {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: blueviolet;
+      border: 10px solid gold;
+      padding: 20px;
+      margin: 10px;
+      width: 45%;
+    }
+    .input-container {
+      text-align: center;
+      margin: 20px;
+    }
+    .jogador-vez {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: blueviolet;
+      font-size: 30px;
+      display: none;
+    }
+    .refresh-button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 20px;
+      background-color: blueviolet;
+      color: gold;
+      border: 2px solid gold;
+      cursor: pointer;
+      display: none;
+    }
+    .refresh-button:hover {
+      background-color: violet;
+    }
+    .numVitorias {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      padding: 10px;
+      bottom: 0;
+      position: fixed;
+      width: 99%;
+      color: gold;
+      background-color: blueviolet;
+      display: none;
+    }
+    @media (max-width: 600px) {
       td {
-        background-color: blueviolet;
-        color: gold;
-        width: 150px; 
-        height: 150px; 
-        font-family: Arial, Helvetica, sans-serif;
-        border: 2px solid gold;
-        font-size: 130px;
-        text-align: center;
-        cursor: pointer;
+        height: 50px;
+        font-size: 10vw;
       }
-      td:hover{
-        background-color: violet;
-      }
-      .container-welcome{
-        display: flex;
-        justify-content: space-around;
-      }
-      .welcome{
-        text-align: center;
-        font-family:Arial, Helvetica, sans-serif;
-        color: blueviolet;
-        border: 10px solid gold;
-        padding: 20px;
-        margin: 10px;
-        width: 45%;
-      }
-      .input-container {
-        text-align: center;
-        margin:20px;
-      }
-      .jogador-vez{
-        text-align: center;
-        font-family:Arial, Helvetica, sans-serif;
-        color: blueviolet;
-        font-size: 30px;
-        display: none;
+      .titulo, .jogador-vez {
+        font-size: 5vw;
       }
       .refresh-button {
-        display: block;
-        margin: 20px auto;
-        padding: 10px 20px;
-        font-size: 20px;
-        background-color: blueviolet;
-        color: gold;
-        border: 2px solid gold;
-        cursor: pointer;
-        display:none;
+        font-size: 4vw;
       }
-      .refresh-button:hover {
-        background-color: violet;
-      }
-      .startButton{
-        font-size:20 px;
-      }
-      .numVitorias{
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        padding: 10px;
-        bottom: 0;
-        position: fixed;
-        width: 99%;
-        color: gold;
-        background-color: blueviolet;
-        display:none;
-      }
-      @media (max-width: 600px) { 
-        td { 
-          height: 50px; 
-          font-size: 10vw; 
-        } 
-        .titulo, .welcome, .jogador-vez { 
-          font-size: 5vw; 
-        } 
-        .refresh-button { 
-          font-size: 4vw; 
-        } 
-      }
-    </style>
-  </head>
-  <body>
-    <h1 class="titulo" id="head-titulo">TIC-TAC-TOE ELITI</h1>
-    <br><br>
-    <div class="container-welcome">
-      <div class="welcome">
-        <h2>Bem-vindo ao TIC-TAC-TOE ELITI</h2>
-        <h3>Insira o nome dos jogadores para iniciar</h3>
-        <div class="input-container">
-          <label for="player1">Jogador 1 (X):</label>
-          <input type="text" id="player1" name="player1"><br><br>
-          <label for="player2">Jogador 2 (O):</label>
-          <input type="text" id="player2" name="player2"><br><br>
-          <button class="startButton" onclick="startGame()">Iniciar Jogo</button>
-        </div>
-      </div>
-      <div class="welcome">
-        <h2>Bem-vindo ao TIC-TAC-TOE ELITI</h2>
-        <h3>Insira o nome dos jogadores para iniciar</h3>
-        <div class="input-container">
-          <label for="player1-2">Jogador 1 (X):</label>
-          <input type="text" id="player1-2" name="player1-2"><br><br>
-          <label for="player2-2">Jogador 2 (O):</label>
-          <input type="text" id="player2-2" name="player2-2"><br><br>
-          <button class="startButton" onclick="startGame2()">Iniciar Jogo</button>
-        </div>
+    }
+  </style>
+</head>
+<body>
+  <h1 class="titulo" id="head-titulo">TIC-TAC-TOE ELITI</h1>
+  <br><br>
+  <div class="jogador-vez" id="header-info">
+    <h2>Jogador da vez: <span id="current-player"></span></h2>
+  </div>
+  <div class="container-welcome">
+    <div class="welcome" id="welcome-game1">
+      <h2>Bem-vindo ao TIC-TAC-TOE ELITI (Jogo 1)</h2>
+      <h3>Insira o nome dos jogadores para iniciar</h3>
+      <div class="input-container">
+        <label for="player1">Jogador 1 (X):</label>
+        <input type="text" id="player1"><br><br>
+        <label for="player2">Jogador 2 (O):</label>
+        <input type="text" id="player2"><br><br>
+        <button class="startButton" onclick="startGame(1)">Iniciar Jogo 1</button>
       </div>
     </div>
-    <div class="jogador-vez">
-      <h2>Jogador da vez: <span id="current-player"></span></h2>
+    <div class="welcome" id="welcome-game2">
+      <h2>Bem-vindo ao TIC-TAC-TOE ELITI (Jogo 2)</h2>
+      <h3>Insira o nome dos jogadores para iniciar</h3>
+      <div class="input-container">
+        <label for="player1-2">Jogador 1 (X):</label>
+        <input type="text" id="player1-2"><br><br>
+        <label for="player2-2">Jogador 2 (O):</label>
+        <input type="text" id="player2-2"><br><br>
+        <button class="startButton" onclick="startGame(2)">Iniciar Jogo 2</button>
+      </div>
     </div>
-    <table>
-      <tr>
-        <td onclick="makeMove(this)"></td>
-        <td onclick="makeMove(this)"></td>
-        <td onclick="makeMove(this)"></td>
-      </tr>
-      <tr style="font-size:100px">
-        <td onclick="makeMove(this)"></td>
-        <td onclick="makeMove(this)"></td>
-        <td onclick="makeMove(this)"></td>
-      </tr>
-      <tr style="font-size:100px">
-        <td onclick="makeMove(this)"></td>
-        <td onclick="makeMove(this)"></td>
-        <td onclick="makeMove(this)"></td>
-      </tr>
+  </div>
+  <div class="tabelas">
+    <table id="game1-table">
+      <tr><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td></tr>
+      <tr><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td></tr>
+      <tr><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td><td onclick="makeMove(1, this)"></td></tr>
     </table>
-    <button class="refresh-button" onclick="location.reload()">Alterar Jogadores</button>
-    <div class="numVitorias" id="numVict">
-      <span id="player1-victories">Vitórias de :</span>
-      <span id="num-empates">Empates: </span>
-      <span id="player2-victories">Vitórias de :</span>
-    </div>
-    <script>
-    var currentPlayer = 'X';
-    var player1 = '';
-    var player2 = '';
-    var numVictP1 = 0;
-    var numVictP2 = 0;
-    var numEmpates = 0;
-    var header = document.getElementById("head-titulo").textContent;
+    <table id="game2-table">
+      <tr><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td></tr>
+      <tr><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td></tr>
+      <tr><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td><td onclick="makeMove(2, this)"></td></tr>
+    </table>
+  </div>
+  <button class="refresh-button" onclick="location.reload()">Alterar Jogadores</button>
+  <div class="numVitorias" id="numVict">
+    <span id="player1-victories">Vitórias de (Jogo 1): 0 | Vitórias de (Jogo 2): 0</span>
+    <span id="num-empates">Empates (Total): 0</span>
+  </div>
+  <script>
+    let games = {
+      1: { player1: '', player2: '', currentPlayer: 'X', numVictP1: 0, numVictP2: 0, numEmpates: 0 },
+      2: { player1: '', player2: '', currentPlayer: 'X', numVictP1: 0, numVictP2: 0, numEmpates: 0 }
+    };
 
-    function startGame() {
-      player1 = document.getElementById('player1').value;
-      player2 = document.getElementById('player2').value;
-
-      if (player1 && player2) {
-        document.querySelector('.welcome').style.display = 'none';
-        document.querySelector('table').style.display = 'table';
-        document.querySelector('.jogador-vez').style.display = 'block';
+    function startGame(gameNumber) {
+      const player1Input = document.getElementById(gameNumber === 1 ? 'player1' : 'player1-2').value;
+      const player2Input = document.getElementById(gameNumber === 1 ? 'player2' : 'player2-2').value;
+      if (player1Input && player2Input) {
+        games[gameNumber].player1 = player1Input;
+        games[gameNumber].player2 = player2Input;
+        document.getElementById(`game${gameNumber}-table`).style.display = 'table';
+        document.getElementById(`welcome-game${gameNumber}`).style.display = 'none';
+        document.getElementById("numVict").style.display = 'flex';
         document.querySelector('.refresh-button').style.display = 'block';
-        document.querySelector('.numVitorias').style.display = 'flex'; // Certifique-se de que o display seja 'flex'
-        document.getElementById('current-player').textContent = player1 + ' (X)';
-        
-        updateVictoryLabels(); // Atualiza os rótulos de vitórias com os nomes dos jogadores
+        document.querySelector('.jogador-vez').style.display = 'block';
+        updateVictoryLabels();
       } else {
         alert('Por favor, insira os nomes dos dois jogadores.');
       }
     }
-    function makeMove(cell) {
+
+    function makeMove(gameNumber, cell) {
+      const game = games[gameNumber];
       if (cell.textContent === '') {
-        cell.textContent = currentPlayer;
-        if (checkWin()) {
-          var winner = currentPlayer === 'X' ? player1 : player2;
-          alert('Jogador ' + winner + ' venceu! Aperte no botão "OK" para jogar novamente.');
-          if (winner === player1) {
-            numVictP1++;
-          } else {
-            numVictP2++;
-          }
-          setTimeout(resetGame, 1000);
-          checkWinSet(); // Verifica se algum jogador venceu o set
-        } else if (checkDraw()) {
-          alert('O jogo empatou! Clique em "OK" para recomeçar.');
-          numEmpates++;
-          resetGame();
+        cell.textContent = game.currentPlayer;
+        if (checkWin(gameNumber)) {
+          alert(`Jogador ${game.currentPlayer === 'X' ? game.player1 : game.player2} venceu o jogo ${gameNumber}!`);
+          if (game.currentPlayer === 'X') game.numVictP1++; else game.numVictP2++;
+          checkWinSet(gameNumber);
+          resetGame(gameNumber);
+        } else if (checkDraw(gameNumber)) {
+          alert(`O jogo ${gameNumber} empatou!`);
+          game.numEmpates++;
+          resetGame(gameNumber);
         } else {
-          currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-          document.getElementById('current-player').textContent = currentPlayer === 'X' ? player1 + ' (X)' : player2 + ' (O)';
+          game.currentPlayer = game.currentPlayer === 'X' ? 'O' : 'X';
+          updateHeader(gameNumber);
         }
       }
     }
 
     function updateVictoryLabels() {
-      document.getElementById('player1-victories').textContent = 'Vitórias de ' + player1 + ': ' + numVictP1;
-      document.getElementById('player2-victories').textContent = 'Vitórias de ' + player2 + ': ' + numVictP2;
-      document.getElementById('num-empates').textContent = 'Empates: ' + numEmpates;
-      document.getElementById('head-titulo').textContent = header + ": " + player1;
+      document.getElementById('player1-victories').textContent = `Vitórias de ${games[1].player1} (Jogo 1): ${games[1].numVictP1} | Vitórias de ${games[2].player1} (Jogo 2): ${games[2].numVictP1}`;
+      document.getElementById('num-empates').textContent = `Empates (Total): ${games[1].numEmpates + games[2].numEmpates}`;
     }
 
-    function checkWin() {
-      var cells = document.querySelectorAll('td');
-      var winPatterns = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Linhas
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colunas
-        [0, 4, 8], [2, 4, 6]             // Diagonais
-      ];
-
-      return winPatterns.some(pattern => {
-        return pattern.every(index => {
-          return cells[index].textContent === currentPlayer;
-        });
-      });
+    function updateHeader(gameNumber) {
+      const game = games[gameNumber];
+      document.getElementById("header-info").style.display = 'block';
+      document.getElementById("current-player").textContent = 
+        `${game.currentPlayer === 'X' ? game.player1 : game.player2} (${game.currentPlayer})`;
     }
 
-    function checkDraw() {
-      var cells = document.querySelectorAll('td');
-      return Array.from(cells).every(cell => cell.textContent !== '');
-    }
-
-    function resetGame() {
-      var cells = document.querySelectorAll('td');
+    function resetGame(gameNumber) {
+      const cells = document.querySelectorAll(`#game${gameNumber}-table td`);
       cells.forEach(cell => cell.textContent = '');
-      currentPlayer = 'X';
-      document.getElementById('current-player').textContent = player1 + ' (X)';
-      updateVictoryLabels(); // Atualiza os rótulos de vitórias após resetar o jogo
+      games[gameNumber].currentPlayer = 'X';
+      updateVictoryLabels();
+      updateHeader(gameNumber);
     }
 
-    function checkWinSet() {
-      if (numVictP1 === 3 || numVictP2 === 3) {
-        var winner = numVictP1 === 3 ? player1 : player2;
-        alert('Jogador ' + winner + ' venceu o set! Aperte no botão "OK" para iniciar novo set.');
-        location.reload(); // Reinicia a página para iniciar um novo set
+    function checkWinSet(gameNumber) {
+      const game = games[gameNumber];
+      if (game.numVictP1 >= 3) {
+        alert(`${game.player1} venceu o conjunto de jogos do Jogo ${gameNumber}!`);
+        resetGame(gameNumber);
+      } else if (game.numVictP2 >= 3) {
+        alert(`${game.player2} venceu o conjunto de jogos do Jogo ${gameNumber}!`);
+        resetGame(gameNumber);
       }
     }
-    </script>
-  </body>
+
+    function checkWin(gameNumber) {
+      const cells = Array.from(document.querySelectorAll(`#game${gameNumber}-table td`));
+      const combos = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // linhas
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // colunas
+        [0, 4, 8], [2, 4, 6]             // diagonais
+      ];
+      return combos.some(combo =>
+        combo.every(index => cells[index].textContent === games[gameNumber].currentPlayer)
+      );
+    }
+
+    function checkDraw(gameNumber) {
+      const cells = Array.from(document.querySelectorAll(`#game${gameNumber}-table td`));
+      return cells.every(cell => cell.textContent !== '');
+    }
+  </script>
+</body>
 </html>
+
