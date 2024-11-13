@@ -12,6 +12,7 @@ O exercício teve como objetivo de praticar lógica de programação e sintaxes 
 
 ## Instalação
 
+Link para acesso: https://tic-tac-toe-eliti-six.vercel.app/ \
 Baixar o arquivo "index.html" e abrí-lo em seu navegador.
 
 ### SCRIPT
