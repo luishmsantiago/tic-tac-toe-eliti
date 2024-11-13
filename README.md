@@ -24,7 +24,7 @@ Para acessar o script HTML, CSS e JavaScript, acesse o arquivo index.html. O pro
 O TIC-TAC-TOE ou Jogo da velha é um clássico do mundo dos jogos. Os jogadores devem adicionar seus nomes na tela para que possam iniciar o jogo. O primeiro jogador é o "X" e em seguida o "O". \
 Quando um jogador consegue acertar 3 células em sequência (horizontal, vertical ou diagonal), uma tela abre com o nome do jogador vitorioso e o placar desse jogador aumenta em +1. \
 Caso os jogadores não consigam uma sequência de vitória, haverá empate, aparecendo isso na tela o valor de empate aumenta em +1. Se um dos jogadores tenha errado o nome ao digitar ou outro jogador queira entrar 
-com seu nome no jogo, eles poderão clicar em "Alterar Jogadores" retornando à tela inicial. \
+com seu nome no jogo, eles poderão clicar em "Alterar Jogadores" retornando à tela inicial. 
 
 - Tela inicial do jogo:
 ![Tela inicial](https://github.com/luishmsantiago/tic-tac-toe-eliti/blob/main/image/tic-tac-toe-telainicial.png)
